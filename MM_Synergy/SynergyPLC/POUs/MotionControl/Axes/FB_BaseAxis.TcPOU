@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="FB_BaseAxis" Id="{9893d30c-592c-4fbd-8920-f1297d3ded8c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_BaseAxis EXTENDS FB_AxisNcBase
+VAR_INPUT
+	bPowerAxis : BOOL;	// Boolean to Turn power on/off Axis
+END_VAR
+VAR_OUTPUT
+	bBaseFBError: BOOL; // Boolean to check if error exists in Base FB
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SUPER^.Cyclic();						//Cyclic method to initialize underlying motion blocks
+
+IF M_BaseFBError() THEN
+;  // Error Exists in Base FB
+ELSE  
+
+
+M_Power(bCommand := bPowerAxis);  // Calling of Method to Turn Power On/Off
+
+
+END_IF;]]></ST>
+    </Implementation>
+    <Folder Name="Power" Id="{3fc8acb5-34a0-417d-a650-9ce1632227e9}" />
+    <Method Name="M_BaseFBError" Id="{a3bbd40f-558d-4007-8e69-605d725218a9}">
+      <Declaration><![CDATA[METHOD M_BaseFBError : BOOL
+VAR_INPUT
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+		IF bError THEN
+			bBaseFBError := TRUE;			//Set bErrorChk to TRUE so none of the other methods are called
+			M_BaseFBError :=TRUE;
+		ELSE
+		
+			bBaseFBError := FALSE;
+			M_BaseFBError :=FALSE;
+		END_IF
+		
+	
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Power" Id="{e746b7da-cb6b-4d35-af69-904a1282bb02}" FolderPath="Power\">
+      <Declaration><![CDATA[METHOD M_Power : HRESULT
+VAR_INPUT
+	bCommand : BOOL;
+END_VAR
+
+VAR
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// ======================================================================
+// Call the pre checks for Axis
+// Call the interlocks if possible
+
+	IF bCommand THEN
+		IF F_SucceededHr(Power.FeedEnable(bFeedEnaPositive:=TRUE,bFeedEnaNegative:=TRUE), M_Power) THEN
+			F_SucceededHr(Power.DoPower(bEnable:=TRUE), M_Power);
+		END_IF
+
+	
+	ELSIF NOT bCommand THEN
+		IF F_SucceededHr(Power.FeedEnable(bFeedEnaPositive:=FALSE,bFeedEnaNegative:=FALSE), M_Power) THEN
+			F_SucceededHr(Power.DoPower(bEnable:=FALSE), M_Power);
+		END_IF
+	
+	ELSE 
+		; // cyclic calls of this method 
+	END_IF
+		
+// ======================================================================]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_BaseAxis">
+      <LineId Id="11" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="17" Count="1" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="19" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BaseAxis.M_BaseFBError">
+      <LineId Id="10" Count="2" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="14" Count="2" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="21" Count="1" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BaseAxis.M_Power">
+      <LineId Id="7" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="33" Count="1" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="38" Count="1" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="41" Count="1" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

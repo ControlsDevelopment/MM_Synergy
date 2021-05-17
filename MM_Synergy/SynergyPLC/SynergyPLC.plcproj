@@ -23,10 +23,15 @@
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\MotionControl\Axes\FB_BaseAxis.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
+    <Folder Include="POUs\MotionControl" />
+    <Folder Include="POUs\MotionControl\Axes" />
     <Folder Include="POUs\Synergy" />
     <Folder Include="POUs\Synergy\Common" />
     <Folder Include="POUs\Synergy\Common\Interfaces" />
