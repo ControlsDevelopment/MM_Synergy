@@ -27,6 +27,45 @@
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
+    <Folder Include="POUs\Synergy" />
+    <Folder Include="POUs\Synergy\Common" />
+    <Folder Include="POUs\Synergy\Common\Interfaces" />
+    <Folder Include="POUs\Synergy\Common\Interfaces\AnalogIO" />
+    <Folder Include="POUs\Synergy\Common\Interfaces\DigitalIO" />
+    <Folder Include="POUs\Synergy\Common\Interfaces\EU67" />
+    <Folder Include="POUs\Synergy\Common\Interfaces\OPCUA" />
+    <Folder Include="POUs\Synergy\Common\Interfaces\VNC" />
+    <Folder Include="POUs\Synergy\Diagnostics" />
+    <Folder Include="POUs\Synergy\Diagnostics\AlarmMangement" />
+    <Folder Include="POUs\Synergy\Diagnostics\AxisHealth" />
+    <Folder Include="POUs\Synergy\Diagnostics\EventLog" />
+    <Folder Include="POUs\Synergy\Diagnostics\IOMonitor" />
+    <Folder Include="POUs\Synergy\Diagnostics\Oscilloscope" />
+    <Folder Include="POUs\Synergy\ErrorHandling" />
+    <Folder Include="POUs\Synergy\Messages" />
+    <Folder Include="POUs\Synergy\ProductionStatistics" />
+    <Folder Include="POUs\Synergy\ProductionStatistics\BatchCounter" />
+    <Folder Include="POUs\Synergy\ProductionStatistics\Counter" />
+    <Folder Include="POUs\Synergy\ProductionStatistics\CycleTime" />
+    <Folder Include="POUs\Synergy\RecipeManagement" />
+    <Folder Include="POUs\Synergy\RecipeManagement\MachineConfiguration" />
+    <Folder Include="POUs\Synergy\RecipeManagement\UserRecipe" />
+    <Folder Include="POUs\Synergy\Safety" />
+    <Folder Include="POUs\Synergy\Safety\EStop" />
+    <Folder Include="POUs\Synergy\Safety\SafetyGate" />
+    <Folder Include="POUs\Synergy\Sequencer" />
+    <Folder Include="POUs\Synergy\SystemOperationMode" />
+    <Folder Include="POUs\Synergy\SystemPower" />
+    <Folder Include="POUs\Synergy\SystemTaskTimes" />
+    <Folder Include="POUs\Synergy\SystemTaskTimes\Fast" />
+    <Folder Include="POUs\Synergy\SystemTaskTimes\Medium" />
+    <Folder Include="POUs\Synergy\SystemTaskTimes\Slow" />
+    <Folder Include="POUs\Synergy\SystemUserSettings" />
+    <Folder Include="POUs\Synergy\SystemUserSettings\DateTime" />
+    <Folder Include="POUs\Synergy\SystemUserSettings\Languages" />
+    <Folder Include="POUs\Synergy\SystemUserSettings\Metrics" />
+    <Folder Include="POUs\Synergy\SystemUserSettings\SoftwareVersion" />
+    <Folder Include="POUs\Synergy\SystemUserSettings\UserAccess" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
@@ -52,19 +91,19 @@
   <ProjectExtensions>
     <PlcProjectOptions>
       <XmlArchive>
-  <Data>
-    <o xml:space="preserve" t="OptionKey">
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
       <v n="Name">"&lt;ProjectRoot&gt;"</v>
       <d n="SubKeys" t="Hashtable" />
       <d n="Values" t="Hashtable" />
     </o>
-  </Data>
-  <TypeList>
-    <Type n="Hashtable">System.Collections.Hashtable</Type>
-    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
-    <Type n="String">System.String</Type>
-  </TypeList>
-</XmlArchive>
+        </Data>
+        <TypeList>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
     </PlcProjectOptions>
   </ProjectExtensions>
 </Project>
