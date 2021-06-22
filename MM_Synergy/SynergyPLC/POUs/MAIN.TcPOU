@@ -13,10 +13,12 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbAxis();]]></ST>
+      <ST><![CDATA[fbAxis();
+MCgvl.fbMCOperationMode();]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="2" Count="0" />
+      <LineId Id="13" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

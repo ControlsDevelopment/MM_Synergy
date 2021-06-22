@@ -26,12 +26,30 @@
     <Compile Include="POUs\MotionControl\Axes\FB_BaseAxis.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\MotionControl\Axes\ST_JogParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MotionControl\Axes\ST_OperationLimits.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MotionControl\GVL\MCgvl.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="POUs\MotionControl\OperationMode\E_OperationMode.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MotionControl\OperationMode\FB_MCOperationMode.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
     <Folder Include="POUs\MotionControl" />
     <Folder Include="POUs\MotionControl\Axes" />
+    <Folder Include="POUs\MotionControl\GVL" />
+    <Folder Include="POUs\MotionControl\OperationMode" />
     <Folder Include="POUs\Synergy" />
     <Folder Include="POUs\Synergy\Common" />
     <Folder Include="POUs\Synergy\Common\Interfaces" />
@@ -107,10 +125,10 @@
   </ItemGroup>
   <ItemGroup>
     <PlaceholderResolution Include="Tc3_PlasticInterfaceMotion">
-      <Resolution>Tc3_PlasticInterfaceMotion, 1.0.0.1 (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc3_PlasticInterfaceMotion, 3.12.2.17 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc3_PlasticInterfaceNc">
-      <Resolution>Tc3_PlasticInterfaceNc, 1.0.0.1 (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc3_PlasticInterfaceNc, 3.12.2.17 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
   </ItemGroup>
   <ProjectExtensions>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="ST_OperationLimits" Id="{1279c56f-e78a-46d8-9e11-cc6dfea9d1fa}">
+    <Declaration><![CDATA[TYPE ST_OperationLimits :
+STRUCT
+	lrSoftMinPosition	:			LREAL;	//Minimum position of travel allowed
+	lrSoftMaxPosition	: 			LREAL;	//Maximum position of travel allowed
+	lrDefaultAcceleration	:			LREAL;	//Maximum Acceleration allowed
+	lrDefaultDeceleration	:			LREAL;	//Minimum deceleration allowed
+	lrMaxVelocity		:      		LREAL;  //Maximum Velocity allowed
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

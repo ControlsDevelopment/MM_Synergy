@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="FB_MCOperationMode" Id="{838fec8e-ff4c-4564-b383-bdc6fa52ca9e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MCOperationMode
+VAR_INPUT
+	eModeRequired : E_OperationMode;
+END_VAR
+VAR_OUTPUT
+	eModeActive  : E_OperationMode;
+END_VAR
+VAR
+	//	fbMsgAutomaticMode : FB_Messagess;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[M_SetMode(eCommand := eModeRequired); ]]></ST>
+    </Implementation>
+    <Method Name="M_PreCheckAutomatic" Id="{a20a50ea-b80e-4275-be7e-d6401d3e6aa2}">
+      <Declaration><![CDATA[METHOD M_PreCheckAutomatic : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Main.fbAxis.Power.Status THEN
+	M_PreCheckAutomatic:=TRUE;
+//	fbMsgAutomaticMode.Release();
+	ELSE
+//	fbMsgAutomaticMode.SendMessage(TC_Events.TC_EventOperationModeAutomatic.AxisPower,'');
+    M_PreCheckAutomatic:=FALSE;	
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_SetMode" Id="{7d980421-3d62-47dc-a953-9928918ddfc3}">
+      <Declaration><![CDATA[METHOD M_SetMode : HRESULT
+VAR_INPUT
+	eCommand : E_OperationMode;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF eModeRequired <> eModeActive THEN  // Initiate only if requested mode is different than active mode
+
+CASE eCommand OF 
+	
+E_OperationMode.Initialization :
+THIS^.eModeActive:=E_OperationMode.Initialization;
+M_SetMode:=F_HRESULTSUCCESS(NOERR);
+
+E_OperationMode.Service :
+THIS^.eModeActive:=E_OperationMode.Service;
+M_SetMode:=F_HRESULTSUCCESS(NOERR);
+
+E_OperationMode.Manual:
+THIS^.eModeActive:=E_OperationMode.Manual;
+M_SetMode:=F_HRESULTSUCCESS(NOERR);
+
+E_OperationMode.Simulation:
+THIS^.eModeActive:=E_OperationMode.Simulation;
+M_SetMode:=F_HRESULTSUCCESS(NOERR);
+
+E_OperationMode.Automatic:
+
+IF M_PreCheckAutomatic () THEN
+THIS^.eModeActive:=E_OperationMode.Automatic;
+M_SetMode:=F_HRESULTSUCCESS(NOERR);
+ELSE
+THIS^.eModeRequired:=THIS^.eModeActive;
+M_SetMode:=F_HRESULTFAILURE(DEVICE_NOTREADY);
+
+END_IF	
+
+ELSE
+M_SetMode:=F_HRESULTFAILURE(DEVICE_INVALIDDATA);
+
+END_CASE
+
+ELSE
+	;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_MCOperationMode">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_MCOperationMode.M_PreCheckAutomatic">
+      <LineId Id="5" Count="1" />
+      <LineId Id="9" Count="2" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_MCOperationMode.M_SetMode">
+      <LineId Id="29" Count="1" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="47" Count="1" />
+      <LineId Id="45" Count="1" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="37" Count="1" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="33" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
