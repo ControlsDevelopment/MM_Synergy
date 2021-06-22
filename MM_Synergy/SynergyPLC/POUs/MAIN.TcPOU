@@ -1,13 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1">
-  <POU Name="MAIN" Id="{878ec357-822f-404b-844d-1b4014fa06cc}">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="MAIN" Id="{878ec357-822f-404b-844d-1b4014fa06cc}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+	fbAxis : FB_BaseAxis		(AxisName		:=	'Axis1',
+								nPtpPoints		:=	5,
+								iProcessHandler	:=	0,
+								iTorqueLimiting	:=	0,
+								iPosCamLookup	:=	0,
+								iVeloCamLookup	:=	0,
+								iPtpCamLookup	:=	0);
 END_VAR
-]]>
-    </Declaration>
+]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[fbAxis();
+MCgvl.fbMCOperationMode();]]></ST>
     </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="2" Count="0" />
+      <LineId Id="13" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
