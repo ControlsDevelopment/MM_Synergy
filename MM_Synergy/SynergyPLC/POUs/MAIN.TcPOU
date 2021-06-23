@@ -3,20 +3,24 @@
   <POU Name="MAIN" Id="{878ec357-822f-404b-844d-1b4014fa06cc}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	fbAxis : FB_BaseAxis		(AxisName		:=	'Axis1',
-								nPtpPoints		:=	5,
-								iProcessHandler	:=	0,
-								iTorqueLimiting	:=	0,
-								iPosCamLookup	:=	0,
-								iVeloCamLookup	:=	0,
-								iPtpCamLookup	:=	0);
+	//Instantiation of Axes using Plastic Library FBs
+
+	i: INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbAxis();
-MCgvl.fbMCOperationMode();]]></ST>
+      <ST><![CDATA[
+MCgvl.fbOperationMode();
+MCgvl.fbAxesConfigurator();
+FOR i:=1 TO MCgvl.fbAxesConfigurator.iNoAxesActive DO
+	MCgvl.fbAxis[i]();
+END_FOR
+]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
+      <LineId Id="96" Count="1" />
+      <LineId Id="90" Count="1" />
+      <LineId Id="94" Count="0" />
       <LineId Id="2" Count="0" />
       <LineId Id="13" Count="0" />
     </LineIds>

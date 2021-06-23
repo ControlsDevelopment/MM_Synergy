@@ -191,7 +191,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[
-IF MCgvl.fbMCOperationMode.eModeActive = E_OperationMode.Manual THEN
+IF MCgvl.fbOperationMode.eModeActive = E_OperationMode.Manual THEN
 	bAllowJogOperationMode:=TRUE;
 //	fbMsgJogOperationMode.Release();
 	ELSE

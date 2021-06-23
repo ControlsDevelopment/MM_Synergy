@@ -21,13 +21,14 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF Main.fbAxis.Power.Status THEN
+        <ST><![CDATA[(*IF Main.fbAxis.Power.Status THEN
 	M_PreCheckAutomatic:=TRUE;
 //	fbMsgAutomaticMode.Release();
 	ELSE
 //	fbMsgAutomaticMode.SendMessage(TC_Events.TC_EventOperationModeAutomatic.AxisPower,'');
     M_PreCheckAutomatic:=FALSE;	
-END_IF]]></ST>
+END_IF
+*);]]></ST>
       </Implementation>
     </Method>
     <Method Name="M_SetMode" Id="{7d980421-3d62-47dc-a953-9928918ddfc3}">
@@ -86,6 +87,7 @@ END_IF]]></ST>
       <LineId Id="9" Count="2" />
       <LineId Id="8" Count="0" />
       <LineId Id="7" Count="0" />
+      <LineId Id="15" Count="0" />
     </LineIds>
     <LineIds Name="FB_MCOperationMode.M_SetMode">
       <LineId Id="29" Count="1" />
