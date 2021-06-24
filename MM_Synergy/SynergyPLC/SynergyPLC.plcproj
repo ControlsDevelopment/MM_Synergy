@@ -23,6 +23,9 @@
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\MotionControl\Alarms\FB_Alarm.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\MotionControl\AxesConfigurator\FB_MCAxesConfigurator.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -53,6 +56,7 @@
     <Folder Include="POUs\MotionControl\Axes" />
     <Folder Include="POUs\MotionControl\GVL" />
     <Folder Include="POUs\MotionControl\AxesConfigurator" />
+    <Folder Include="POUs\MotionControl\Alarms" />
     <Folder Include="POUs\MotionControl\OperationMode" />
     <Folder Include="POUs\Synergy" />
     <Folder Include="POUs\Synergy\Common" />
