@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="StepBase" Id="{c9e527ca-1eb8-4b7d-a718-9f2d118aeaa1}">
+    <Declaration><![CDATA[TYPE StepBase :
+STRUCT
+	rSetVelocity		:		REAL;
+	rSetRamp			:		REAL;
+	rSetEndPosition		:		REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

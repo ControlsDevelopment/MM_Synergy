@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <GVL Name="mcGlobal" Id="{a95cc114-dbbb-480d-aff4-24ee682a6b03}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	fbMotionModule	:		ARRAY[1..cMaxNoOfModule] OF ModuleBase;
+END_VAR
+
+VAR_GLOBAL CONSTANT
+	cMaxNoOfAxis			:		INT := 8;
+	cMinNoOfAxis			:		INT := 1;
+	
+	cMaxNoOfModule			:		INT := 4;
+	cMinNoOfModule			:		INT := 1;
+	
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

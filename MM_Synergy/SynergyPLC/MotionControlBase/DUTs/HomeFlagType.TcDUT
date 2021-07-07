@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="HomeFlagType" Id="{bd7e8a88-d54e-4e9e-b667-f8b720be897f}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE HomeFlagType :
+(
+	eSensor := 1,
+	eHardStop := 2
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

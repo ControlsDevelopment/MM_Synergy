@@ -30,8 +30,8 @@
     "DIAGNOSTICS_DOMAINS": [],
     "DISCOVERY": 2,
     "ENDPOINTS": [
-        "http://127.0.0.1:13000",
-        "http://127.0.0.1:3000"
+        "http://127.0.0.1:13001",
+        "http://127.0.0.1:3001"
     ],
     "ETAGENABLED": true,
     "EXTENSIONS": {
@@ -2770,11 +2770,11 @@
     "USERSELECTTYPE": 0,
     "VIDEOSEGMENTSIZE": 1048576,
     "VIRTUALDIRECTORIES": {
-        "/": "C:\\Users\\ulhaqjaw\\Documents\\TcXaeShell\\MM_Synergy\\SynergyHMI",
-        "/Beckhoff.TwinCAT.HMI.Controls": "C:\\Users\\ulhaqjaw\\Documents\\TcXaeShell\\MM_Synergy\\Packages\\Beckhoff.TwinCAT.HMI.Controls.12.746.0\\runtimes\\native1.12-tchmi",
-        "/Beckhoff.TwinCAT.HMI.Functions": "C:\\Users\\ulhaqjaw\\Documents\\TcXaeShell\\MM_Synergy\\Packages\\Beckhoff.TwinCAT.HMI.Functions.12.746.0\\runtimes\\native1.12-tchmi",
-        "/bin": "C:\\Users\\ulhaqjaw\\Documents\\TcXaeShell\\MM_Synergy\\SynergyHMI\\bin\\",
-        "/bin/framework": "C:\\Users\\ulhaqjaw\\Documents\\TcXaeShell\\MM_Synergy\\SynergyHMI\\bin\\framework",
-        "/framework": "C:\\Users\\ulhaqjaw\\Documents\\TcXaeShell\\MM_Synergy\\Packages\\Beckhoff.TwinCAT.HMI.Framework.12.746.0\\runtimes\\native1.12-tchmi"
+        "/": "C:\\Users\\ajhaveri\\Documents\\TcXaeShell\\MM_Synergy\\SynergyHMI",
+        "/Beckhoff.TwinCAT.HMI.Controls": "C:\\Users\\ajhaveri\\Documents\\TcXaeShell\\MM_Synergy\\Packages\\Beckhoff.TwinCAT.HMI.Controls.12.746.3\\runtimes\\native1.12-tchmi",
+        "/Beckhoff.TwinCAT.HMI.Functions": "C:\\Users\\ajhaveri\\Documents\\TcXaeShell\\MM_Synergy\\Packages\\Beckhoff.TwinCAT.HMI.Functions.12.746.3\\runtimes\\native1.12-tchmi",
+        "/bin": "C:\\Users\\ajhaveri\\Documents\\TcXaeShell\\MM_Synergy\\SynergyHMI\\bin\\",
+        "/bin/framework": "C:\\Users\\ajhaveri\\Documents\\TcXaeShell\\MM_Synergy\\SynergyHMI\\bin\\framework",
+        "/framework": "C:\\Users\\ajhaveri\\Documents\\TcXaeShell\\MM_Synergy\\Packages\\Beckhoff.TwinCAT.HMI.Framework.12.746.3\\runtimes\\native1.12-tchmi"
     }
 }

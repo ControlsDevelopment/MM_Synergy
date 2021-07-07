@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="ModuleBase" Id="{de1993d4-1e1b-43b1-8448-164441f29cf7}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ModuleBase
+VAR
+	fbAxis			:		ARRAY[1..mcGlobal.cMaxNoOfAxis] OF AxisBase[
+															(AxisName		:=	'Axis1',
+															nPtpPoints		:=	5,
+															iProcessHandler	:=	0,
+															iTorqueLimiting	:=	0,
+															iPosCamLookup	:=	0,
+															iVeloCamLookup	:=	0,
+															iPtpCamLookup	:=	0),
+															(AxisName		:=	'Axis2',
+															nPtpPoints		:=	5,
+															iProcessHandler	:=	0,
+															iTorqueLimiting	:=	0,
+															iPosCamLookup	:=	0,
+															iVeloCamLookup	:=	0,
+															iPtpCamLookup	:=	0),
+															(AxisName		:=	'Axis3',
+															nPtpPoints		:=	5,
+															iProcessHandler	:=	0,
+															iTorqueLimiting	:=	0,
+															iPosCamLookup	:=	0,
+															iVeloCamLookup	:=	0,
+															iPtpCamLookup	:=	0),
+															(AxisName		:=	'Axis4',
+															nPtpPoints		:=	5,
+															iProcessHandler	:=	0,
+															iTorqueLimiting	:=	0,
+															iPosCamLookup	:=	0,
+															iVeloCamLookup	:=	0,
+															iPtpCamLookup	:=	0),
+															(AxisName		:=	'Axis5',
+															nPtpPoints		:=	5,
+															iProcessHandler	:=	0,
+															iTorqueLimiting	:=	0,
+															iPosCamLookup	:=	0,
+															iVeloCamLookup	:=	0,
+															iPtpCamLookup	:=	0),
+															(AxisName		:=	'Axis6',
+															nPtpPoints		:=	5,
+															iProcessHandler	:=	0,
+															iTorqueLimiting	:=	0,
+															iPosCamLookup	:=	0,
+															iVeloCamLookup	:=	0,
+															iPtpCamLookup	:=	0),
+															(AxisName		:=	'Axis7',
+															nPtpPoints		:=	5,
+															iProcessHandler	:=	0,
+															iTorqueLimiting	:=	0,
+															iPosCamLookup	:=	0,
+															iVeloCamLookup	:=	0,
+															iPtpCamLookup	:=	0),
+															(AxisName		:=	'Axis8',
+															nPtpPoints		:=	5,
+															iProcessHandler	:=	0,
+															iTorqueLimiting	:=	0,
+															iPosCamLookup	:=	0,
+															iVeloCamLookup	:=	0,
+															iPtpCamLookup	:=	0)
+															];
+	iCount				:		INT;
+END_VAR
+
+VAR_INPUT
+	intNoOfAxis			:		INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FOR iCount := 1 TO intNoOfAxis DO
+	fbAxis[iCount].A_Cyclic();
+END_FOR]]></ST>
+    </Implementation>
+    <LineIds Name="ModuleBase">
+      <LineId Id="9" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="152" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

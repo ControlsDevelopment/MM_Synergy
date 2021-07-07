@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="Mechanical" Id="{54bd22e5-eafb-48ec-8949-13bf72bb4da7}">
+    <Declaration><![CDATA[TYPE Mechanical :
+STRUCT
+	rInputRev			:		REAL;
+	rOutputRev			:		REAL;
+	rScrewLead			:		REAL;
+	rStroke				:		REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

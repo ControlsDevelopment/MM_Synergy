@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="Application" Id="{b8ff7bc1-c45a-4a5f-91e6-692a392be699}">
+    <Declaration><![CDATA[TYPE Application :
+STRUCT
+	GearingType			:	GearingType;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

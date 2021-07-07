@@ -28,6 +28,6 @@
     "bin/"
   ],
   "include": [
-    "C:/Users/ulhaqjaw/Documents/TcXaeShell/MM_Synergy/Packages/Beckhoff.TwinCAT.HMI.Framework.12.746.0/runtimes/native1.12-tchmi/TcHmi.d.ts"
+    "C:/Users/ajhaveri/Documents/TcXaeShell/MM_Synergy/Packages/Beckhoff.TwinCAT.HMI.Framework.12.746.3/runtimes/native1.12-tchmi/TcHmi.d.ts"
   ]
 }

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="Main1ms" Id="{3580f847-e6d0-45a6-ba8f-b4c0385d5404}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Main1ms
+VAR
+	iCount			:		INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FOR iCount := 1 TO mcGlobal.cMaxNoOfModule DO
+	mcGlobal.fbMotionModule[iCount](intNoOfAxis := (*from HMI*));
+END_FOR;
+
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="Main1ms">
+      <LineId Id="9" Count="0" />
+      <LineId Id="11" Count="1" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

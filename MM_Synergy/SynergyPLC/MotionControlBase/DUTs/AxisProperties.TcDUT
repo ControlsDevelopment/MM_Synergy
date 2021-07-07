@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="AxisProperties" Id="{3ec430c3-5241-4ad6-bb60-73e53466afd0}">
+    <Declaration><![CDATA[TYPE AxisProperties :
+STRUCT
+	stIdentification			:		ID;
+	stHardware					:		Hardware;
+	stApplication				:		Application;
+	stHoming					:		Homing;
+	stOperationLimits			:		OperationLimits;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

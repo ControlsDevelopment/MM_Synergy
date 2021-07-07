@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="GearingType" Id="{edb251b0-0fac-4dcf-9973-0c5d2bc00c05}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE GearingType :
+(
+	eLinear := 1,
+	eRotary := 2
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

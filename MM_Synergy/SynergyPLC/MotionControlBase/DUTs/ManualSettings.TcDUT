@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="ManualSettings" Id="{5d12ac56-4f1a-4699-a009-418ca7966e32}">
+    <Declaration><![CDATA[TYPE ManualSettings :
+STRUCT
+	lrJogVelocity			:		LREAL;
+	lrJogRamp				:		LREAL;
+	lrJogJerk				:		LREAL;
+	lrJogTorque				:		LREAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

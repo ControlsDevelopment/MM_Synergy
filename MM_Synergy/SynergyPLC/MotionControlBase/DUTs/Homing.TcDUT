@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="Homing" Id="{a875da55-0f01-4e05-a482-9f572e0b6239}">
+    <Declaration><![CDATA[TYPE Homing :
+STRUCT
+	Mode			:		HomingMode;
+	FlagType		:		HomeFlagType;
+	bHomeInput		:		BOOL;
+	rOffset			:		REAL;
+	rVelocity		:		REAL;
+	rTorque			:		REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

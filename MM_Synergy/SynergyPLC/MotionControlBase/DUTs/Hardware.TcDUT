@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="Hardware" Id="{c2cb8a09-68d8-4356-8a60-e91ad42f3546}">
+    <Declaration><![CDATA[TYPE Hardware :
+STRUCT
+	intDriveNumber			:		INT;
+	sDriveModel				:		STRING;
+	sMotorModel				:		STRING;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

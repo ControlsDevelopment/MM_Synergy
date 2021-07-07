@@ -15,90 +15,96 @@
     <Implicit_KindOfTask>{5bc3139f-6388-44d5-b40c-71c59125fb86}</Implicit_KindOfTask>
     <Implicit_Jitter_Distribution>{20f3d2dc-a286-47a8-a137-01218ae5b7ca}</Implicit_Jitter_Distribution>
     <LibraryReferences>{08748f9b-be85-43ab-b070-1e11d12176d8}</LibraryReferences>
+    <Released>false</Released>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="PlcTask.TcTTO">
+    <Compile Include="GlobalBase\WatchdogTimer.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\MAIN.TcPOU">
+    <Compile Include="MotionControlBase\AxisBase.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\MotionControl\Alarms\FB_Alarm.TcPOU">
+    <Compile Include="MotionControlBase\DUTs\Application.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\MotionControl\AxesConfigurator\FB_MCAxesConfigurator.TcPOU">
+    <Compile Include="MotionControlBase\DUTs\AxisData.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\MotionControl\Axes\FB_BaseAxis.TcPOU">
+    <Compile Include="MotionControlBase\DUTs\AxisProperties.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\MotionControl\Axes\ST_JogParameters.TcDUT">
+    <Compile Include="MotionControlBase\DUTs\AxisStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\MotionControl\Axes\ST_OperationLimits.TcDUT">
+    <Compile Include="MotionControlBase\DUTs\GearingType.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\MotionControl\GVL\MCgvl.TcGVL">
+    <Compile Include="MotionControlBase\DUTs\Hardware.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\DUTs\HomeFlagType.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\DUTs\Homing.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\DUTs\HomingMode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\DUTs\ID.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\DUTs\ManualSettings.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\DUTs\Mechanical.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\DUTs\OperationLimits.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\DUTs\OperationMode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\DUTs\StageBase.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\DUTs\StepBase.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\GVLs\mcGlobal.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
-    <Compile Include="POUs\MotionControl\OperationMode\E_OperationMode.TcTLEO">
+    <Compile Include="MotionControlBase\ModuleBase.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\MotionControl\OperationMode\FB_MCOperationMode.TcPOU">
+    <Compile Include="Synergy\GVLs\synGlobal.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="Synergy\MAIN\Main1ms.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Task1ms.TcTTO">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DUTs" />
-    <Folder Include="GVLs" />
-    <Folder Include="POUs\MotionControl" />
-    <Folder Include="POUs\MotionControl\Axes" />
-    <Folder Include="POUs\MotionControl\GVL" />
-    <Folder Include="POUs\MotionControl\AxesConfigurator" />
-    <Folder Include="POUs\MotionControl\Alarms" />
-    <Folder Include="POUs\MotionControl\OperationMode" />
-    <Folder Include="POUs\Synergy" />
-    <Folder Include="POUs\Synergy\Common" />
-    <Folder Include="POUs\Synergy\Common\Interfaces" />
-    <Folder Include="POUs\Synergy\Common\Interfaces\AnalogIO" />
-    <Folder Include="POUs\Synergy\Common\Interfaces\DigitalIO" />
-    <Folder Include="POUs\Synergy\Common\Interfaces\EU67" />
-    <Folder Include="POUs\Synergy\Common\Interfaces\OPCUA" />
-    <Folder Include="POUs\Synergy\Common\Interfaces\VNC" />
-    <Folder Include="POUs\Synergy\Diagnostics" />
-    <Folder Include="POUs\Synergy\Diagnostics\AlarmMangement" />
-    <Folder Include="POUs\Synergy\Diagnostics\AxisHealth" />
-    <Folder Include="POUs\Synergy\Diagnostics\EventLog" />
-    <Folder Include="POUs\Synergy\Diagnostics\IOMonitor" />
-    <Folder Include="POUs\Synergy\Diagnostics\Oscilloscope" />
-    <Folder Include="POUs\Synergy\ErrorHandling" />
-    <Folder Include="POUs\Synergy\Messages" />
-    <Folder Include="POUs\Synergy\ProductionStatistics" />
-    <Folder Include="POUs\Synergy\ProductionStatistics\BatchCounter" />
-    <Folder Include="POUs\Synergy\ProductionStatistics\Counter" />
-    <Folder Include="POUs\Synergy\ProductionStatistics\CycleTime" />
-    <Folder Include="POUs\Synergy\RecipeManagement" />
-    <Folder Include="POUs\Synergy\RecipeManagement\MachineConfiguration" />
-    <Folder Include="POUs\Synergy\RecipeManagement\UserRecipe" />
-    <Folder Include="POUs\Synergy\Safety" />
-    <Folder Include="POUs\Synergy\Safety\EStop" />
-    <Folder Include="POUs\Synergy\Safety\SafetyGate" />
-    <Folder Include="POUs\Synergy\Sequencer" />
-    <Folder Include="POUs\Synergy\SystemOperationMode" />
-    <Folder Include="POUs\Synergy\SystemPower" />
-    <Folder Include="POUs\Synergy\SystemTaskTimes" />
-    <Folder Include="POUs\Synergy\SystemTaskTimes\Fast" />
-    <Folder Include="POUs\Synergy\SystemTaskTimes\Medium" />
-    <Folder Include="POUs\Synergy\SystemTaskTimes\Slow" />
-    <Folder Include="POUs\Synergy\SystemUserSettings" />
-    <Folder Include="POUs\Synergy\SystemUserSettings\DateTime" />
-    <Folder Include="POUs\Synergy\SystemUserSettings\Languages" />
-    <Folder Include="POUs\Synergy\SystemUserSettings\Metrics" />
-    <Folder Include="POUs\Synergy\SystemUserSettings\SoftwareVersion" />
-    <Folder Include="POUs\Synergy\SystemUserSettings\UserAccess" />
-    <Folder Include="VISUs" />
-    <Folder Include="POUs" />
+    <Folder Include="EMultiBase\DUTs" />
+    <Folder Include="EMultiBase\GVLs" />
+    <Folder Include="GlobalBase\DUTs" />
+    <Folder Include="GlobalBase\GVLs" />
+    <Folder Include="MotionControlBase" />
+    <Folder Include="MotionControlBase\DUTs" />
+    <Folder Include="MotionControlBase\GVLs" />
+    <Folder Include="GlobalBase" />
+    <Folder Include="EMultiBase" />
+    <Folder Include="Synergy" />
+    <Folder Include="Synergy\Common" />
+    <Folder Include="Synergy\DUTs" />
+    <Folder Include="Synergy\GVLs" />
+    <Folder Include="Synergy\MAIN" />
   </ItemGroup>
   <ItemGroup>
     <PlaceholderReference Include="Tc2_Standard">

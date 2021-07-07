@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="AxisBase" Id="{f01b70da-99ac-45af-a69a-f028b82e3d93}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK AxisBase EXTENDS FB_AxisNcBase
+VAR_INPUT
+	bEnablePower		:		BOOL;
+	bJogPositive		:		BOOL;
+	bJogNegative		:		BOOL;
+	Command				:		BYTE;
+	stManualSettings	:		ManualSettings;
+END_VAR
+
+VAR_OUTPUT
+	stData				:		AxisData;
+	stStatus			:		AxisStatus;
+	Status				:		BYTE;
+END_VAR
+
+VAR
+	stProperties		:		AxisProperties;
+	stPtpStage			:		ARRAY[1..4] OF StageBase;
+	tWatchdogTimer		:		TIME;
+	fbWatchdogTimer		:		WatchdogTimer;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Action Name="A_Cyclic" Id="{40890831-3935-467d-b894-2425eb46a218}">
+      <Implementation>
+        <ST><![CDATA[//Cyclic method to initialize underlying motion blocks
+SUPER^.Cyclic();
+
+A_MeasureData();
+
+M_ServoPower(bEnablePower := bEnablePower);
+
+M_MoveJog(bJogPositive := bJogPositive,
+		bJogNegative := bJogNegative);]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="A_Dummy" Id="{0666b21c-093c-493a-8a37-4c6f37d00151}">
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="A_MeasureData" Id="{5dad5519-88d1-40ab-9f25-564204de7e52}">
+      <Implementation>
+        <ST><![CDATA[THIS^.stData.lrActPosition := THIS^.ActualsNc.Position;
+THIS^.stData.lrActVelocity := THIS^.ActualsNc.Velocity;
+THIS^.stData.lrActTorque := THIS^.ActualsNc.Torque;
+
+(*TO DO
+THIS^.Data.lrMotorTemp :=
+*) ]]></ST>
+      </Implementation>
+    </Action>
+    <Method Name="M_AutoTune" Id="{24c2683b-313d-4ce0-a8a7-5ca14996ebfb}">
+      <Declaration><![CDATA[METHOD M_AutoTune : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_CreepJog" Id="{da011a66-ca90-4a33-b2b2-80f1974e2c52}">
+      <Declaration><![CDATA[METHOD M_CreepJog : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Home" Id="{12c1bbd5-f627-4f04-b182-1f5de64efc58}">
+      <Declaration><![CDATA[METHOD M_Home : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Init" Id="{8f54db89-af5f-4682-b826-34684fe605bf}">
+      <Declaration><![CDATA[METHOD M_Init
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_JogToStartPos" Id="{e4682da8-06fc-461f-980b-49e8653254ee}">
+      <Declaration><![CDATA[METHOD M_JogToStartPos : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_MarkHome" Id="{f7f55641-b6b3-4757-9b7b-79c5c93a254d}">
+      <Declaration><![CDATA[METHOD M_MarkHome : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_MonitorLimits" Id="{65ede5d8-278f-48e5-a20f-3279a434be73}">
+      <Declaration><![CDATA[METHOD M_MonitorLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_MoveJog" Id="{5e32fd6b-c8cf-41cd-a9f4-a8fc99ac61f9}">
+      <Declaration><![CDATA[METHOD M_MoveJog : HRESULT
+VAR_INPUT
+	bJogPositive		:		BOOL;
+	bJogNegative		:		BOOL;
+END_VAR
+
+VAR_OUTPUT
+	bActive				:		BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF bJogPositive OR bJogNegative THEN
+	//Set Jog Parameters
+	F_SucceededHr(Jog.SetParameter(fAcceleration := THIS^.stManualSettings.lrJogRamp,
+								   fDeceleration := THIS^.stManualSettings.lrJogRamp,
+								   fJerk := THIS^.stManualSettings.lrJogJerk,
+								   fVelocity := THIS^.stManualSettings.lrJogVelocity), M_MoveJog);
+	Jog.TorqueLimiting := stManualSettings.lrJogTorque;
+	
+	IF M_MoveJog_PreCheck() THEN
+		//Execute Jog
+		IF bJogPositive THEN
+			F_SucceededHr(Jog.DoJogP(bExecute := TRUE), M_MoveJog);	
+		ELSIF bJogNegative THEN
+			F_SucceededHr(Jog.DoJogM(bExecute := TRUE), M_MoveJog);
+		ELSE
+			// Stop the jog when + or - button is released
+			F_SucceededHr(Jog.DoJogP(bExecute := FALSE), M_MoveJog); 
+			F_SucceededHr(Jog.DoJogM(bExecute := FALSE), M_MoveJog);
+		END_IF
+	ELSE
+		F_SucceededHr(Jog.DoJogP(bExecute := FALSE), M_MoveJog);
+		F_SucceededHr(Jog.DoJogM(bExecute := FALSE), M_MoveJog);
+	END_IF
+END_IF
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_MoveJog_PreCheck" Id="{69bf0301-18ab-443a-9f8d-068ca4715ce0}">
+      <Declaration><![CDATA[METHOD M_MoveJog_PreCheck : BOOL
+VAR_INPUT
+END_VAR
+
+VAR
+	bAllowJogOperationMode: BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(*
+IF MCgvl.fbOperationMode.eModeActive = E_OperationMode.Manual THEN
+	bAllowJogOperationMode:=TRUE;
+//	fbMsgJogOperationMode.Release();
+	ELSE
+//	fbMsgJogOperationMode.SendMessage(TC_Events.TC_EventJog.OperationMode,'Change Operation Mode');
+    bAllowJogOperationMode:=FALSE;	
+END_IF
+
+IF stJogParameters.lrJogAcceleration > crJogMinParameter AND stJogParameters.lrJogDeceleration > crJogMinParameter
+AND stJogParameters.lrJogVelocity > crJogMinParameter THEN 
+	bAllowJogParameters:=TRUE;
+//	fbMsgJogParamters.Release();
+	ELSE
+//	fbMsgJogParamters.SendMessage(TC_Events.TC_EventJog.Parameters,'Check Acceleration, Decceleration and Velocity');
+    bAllowJogParameters:=FALSE;	
+END_IF
+
+M_PreChecks:= bAllowJogOperationMode AND bAllowJogParameters;
+*)
+M_MoveJog_PreCheck := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_MovePtp" Id="{c9f3109a-b743-4f50-86a1-0066e147b5fc}">
+      <Declaration><![CDATA[METHOD M_MovePtp
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_ServoPower" Id="{a13fd53b-a4c1-4172-bce0-469c2ced64b8}">
+      <Declaration><![CDATA[METHOD M_ServoPower : HRESULT
+VAR_INPUT
+	bEnablePower	:		BOOL;
+END_VAR
+
+VAR_OUTPUT
+	bDone			:		BOOL;
+	bError			:		BOOL;					
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF bEnablePower THEN
+	IF F_SucceededHr(Power.FeedEnable(bFeedEnaPositive:=TRUE,bFeedEnaNegative:=TRUE), M_ServoPower) THEN
+	F_SucceededHr(Power.DoPower(bEnable:=TRUE), M_ServoPower);
+	END_IF
+
+ELSIF NOT bEnablePower THEN
+	IF F_SucceededHr(Power.FeedEnable(bFeedEnaPositive:=FALSE,bFeedEnaNegative:=FALSE), M_ServoPower) THEN
+	F_SucceededHr(Power.DoPower(bEnable:=FALSE), M_ServoPower);
+	END_IF
+
+ELSE 
+	; // cyclic calls of this method 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_StopMotion" Id="{1c450010-a9a4-4d42-979c-3d67de45f7c3}">
+      <Declaration><![CDATA[METHOD M_StopMotion : HRESULT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[F_SucceededHr(Stop.DoStop(bExecute := TRUE), M_StopMotion);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_StrokeCheck" Id="{00df7af3-3585-499a-83d9-70562d7f92aa}">
+      <Declaration><![CDATA[METHOD M_StrokeCheck : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="AxisBase">
+      <LineId Id="22" Count="0" />
+    </LineIds>
+    <LineIds Name="AxisBase.A_Cyclic">
+      <LineId Id="2" Count="7" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="AxisBase.A_Dummy">
+      <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="AxisBase.A_MeasureData">
+      <LineId Id="2" Count="6" />
+    </LineIds>
+    <LineIds Name="AxisBase.M_AutoTune">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="AxisBase.M_CreepJog">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="AxisBase.M_Home">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="AxisBase.M_Init">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="AxisBase.M_JogToStartPos">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="AxisBase.M_MarkHome">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="AxisBase.M_MonitorLimits">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="AxisBase.M_MoveJog">
+      <LineId Id="30" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="57" Count="2" />
+      <LineId Id="81" Count="2" />
+      <LineId Id="35" Count="5" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="41" Count="2" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="87" Count="1" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="79" Count="0" />
+    </LineIds>
+    <LineIds Name="AxisBase.M_MoveJog_PreCheck">
+      <LineId Id="6" Count="17" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="37" Count="0" />
+    </LineIds>
+    <LineIds Name="AxisBase.M_MovePtp">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="AxisBase.M_ServoPower">
+      <LineId Id="68" Count="3" />
+      <LineId Id="73" Count="8" />
+    </LineIds>
+    <LineIds Name="AxisBase.M_StopMotion">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="AxisBase.M_StrokeCheck">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
