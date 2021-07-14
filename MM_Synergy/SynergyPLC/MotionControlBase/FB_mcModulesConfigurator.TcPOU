@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="FB_mcModulesConfigurator" Id="{10741688-6e82-41f5-86b7-218679d70681}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_mcModulesConfigurator
+VAR_INPUT
+	bExecute : BOOL; // Execute the function block
+	uiNoModulesRequired : UINT:= 1; // Enter modules required
+	sNetId: T_AmsNetId;
+	pArrEcScannedSlaveInfo: POINTER TO ARRAY [0..EC_MAX_SLAVES] OF ST_EcSlaveScannedData;
+	cbBufLen: UDINT;
+	tTimeout: TIME;
+END_VAR
+VAR_OUTPUT
+	uiNoModulesActive : UINT; // current no of active axes
+	bNoOfModulesMatched : BOOL; // Entered no of axes matched with ECAT ring axes available
+END_VAR
+
+VAR
+	uiECATScannedModules: UINT; // Scan the ECAT ring to find the no of axis available
+	fbScannedModules	: FB_ECGETSCANNEDSLAVES;
+	rTrigExecute		: R_TRIG;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*Axis configurator is designed to get number of axis from user and scan ECAT 
+TODO: Add further elements to it
+*)
+
+rTrigExecute(CLK:= bExecute);
+M_NoOfModules(bCommand:= rTrigExecute.Q);]]></ST>
+    </Implementation>
+    <Method Name="M_NoOfModules" Id="{7edc4b4f-0983-4060-a104-69bfeea56006}">
+      <Declaration><![CDATA[METHOD M_NoOfModules : BOOL
+VAR_INPUT
+	bCommand : BOOL; 
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF bCommand THEN
+
+	fbScannedModules(
+		bExecute:= TRUE, 
+		sNetId:= sNetId, 
+		pArrEcScannedSlaveInfo:= pArrEcScannedSlaveInfo, 
+		cbBufLen:= cbBufLen, 
+		tTimeout:= tTimeout ,  
+		nSlaves=> uiECATScannedModules);
+
+	IF (uiNoModulesRequired <> uiNoModulesActive) OR (uiNoModulesRequired <> uiECATScannedModules) THEN
+		
+		IF (uiNoModulesRequired < mcGvl.cMinModuleCapacity) OR (uiNoModulesRequired > mcGvl.cMaxModuleCapacity) THEN
+			; //TODO: Entered no of axes are not possible set the message to user
+	//	ELSIF (uiNoModulesRequired <> uiECATScannedModules) THEN
+	//		bNoOfModulesMatched:=FALSE; // Entered no of axes are not matching the ECAT ring axes available
+		ELSE
+			uiNoModulesActive:= uiNoModulesRequired; // Set the required number of axes to active no of axes
+			bNoOfModulesMatched:= TRUE;	
+		END_IF
+	
+	ELSE
+		; // cyclic calls for inequality
+	END_IF
+	// Reset the input of Function block so next time it has to look for only rising edge
+	bExecute:= FALSE; 
+ELSE
+	fbScannedModules(bExecute:= FALSE); // cyclic calls for bCommand
+END_IF
+
+M_NoOfModules:= bNoOfModulesMatched;
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_mcModulesConfigurator">
+      <LineId Id="167" Count="4" />
+      <LineId Id="28" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_mcModulesConfigurator.M_NoOfModules">
+      <LineId Id="20" Count="0" />
+      <LineId Id="31" Count="6" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="6" Count="12" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="39" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

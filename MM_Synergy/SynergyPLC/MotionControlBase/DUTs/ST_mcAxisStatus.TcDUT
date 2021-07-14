@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="ST_mcAxisStatus" Id="{52eef8f2-82f7-48c5-a278-bfc275b4b6d4}">
+    <Declaration><![CDATA[TYPE ST_mcAxisStatus :
+STRUCT
+	bPowerEnabled		:		BOOL; // Power is enabled
+	bHomed				:		BOOL; // Homed
+	bStandStill			:		BOOL; // Standstill
+	bMoving				: 		BOOL; // Moving
+	bError				:       BOOL; // Error
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
