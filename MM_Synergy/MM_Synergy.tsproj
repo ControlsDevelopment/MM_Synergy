@@ -1351,7 +1351,7 @@ External Setpoint Generation:
 		</System>
 		<Motion>
 			<NC>
-				<SafTask Priority="4" CycleTime="100000" AmsPort="501" IoAtBegin="true">
+				<SafTask Priority="4" CycleTime="10000" AmsPort="501" IoAtBegin="true">
 					<Name>NC-Task 1 SAF</Name>
 					<Vars VarGrpType="1" InsertType="1">
 						<Name>Inputs</Name>
@@ -1363,7 +1363,7 @@ External Setpoint Generation:
 						<Name>Image</Name>
 					</Image>
 				</SafTask>
-				<SvbTask Priority="8" CycleTime="100000" AmsPort="511">
+				<SvbTask Priority="8" CycleTime="10000" AmsPort="511">
 					<Name>NC-Task 1 SVB</Name>
 				</SvbTask>
 				<Axis Id="1" CreateSymbols="true" AxisType="1">
@@ -2652,344 +2652,280 @@ External Setpoint Generation:
 					<Name>SynergyPLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
-						<Name>PlcTask Inputs</Name>
+						<Name>Task1ms Inputs</Name>
 						<Var>
-							<Name>MCgvl.fbAxis[1].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[1].Axis[1].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>MCgvl.fbAxis[2].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[1].Axis[2].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>MCgvl.fbAxis[3].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[1].Axis[3].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>MCgvl.fbAxis[4].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[1].Axis[4].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>MCgvl.fbAxis[5].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[1].Axis[5].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>MCgvl.fbAxis[6].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[1].Axis[6].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>MCgvl.fbAxis[7].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[1].Axis[7].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>MCgvl.fbAxis[8].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[1].Axis[8].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[1].fbAxis[1].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[2].Axis[1].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[1].fbAxis[2].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[2].Axis[2].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[1].fbAxis[3].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[2].Axis[3].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[1].fbAxis[4].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[2].Axis[4].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[1].fbAxis[5].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[2].Axis[5].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[1].fbAxis[6].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[2].Axis[6].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[1].fbAxis[7].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[2].Axis[7].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[1].fbAxis[8].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[2].Axis[8].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[2].fbAxis[1].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[3].Axis[1].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[2].fbAxis[2].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[3].Axis[2].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[2].fbAxis[3].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[3].Axis[3].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[2].fbAxis[4].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[3].Axis[4].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[2].fbAxis[5].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[3].Axis[5].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[2].fbAxis[6].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[3].Axis[6].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[2].fbAxis[7].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[3].Axis[7].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[2].fbAxis[8].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[3].Axis[8].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[3].fbAxis[1].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[4].Axis[1].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[3].fbAxis[2].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[4].Axis[2].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[3].fbAxis[3].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[4].Axis[3].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[3].fbAxis[4].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[4].Axis[4].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[3].fbAxis[5].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[4].Axis[5].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[3].fbAxis[6].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[4].Axis[6].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[3].fbAxis[7].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[4].Axis[7].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[3].fbAxis[8].fbLocalNc.AxisRef.NcToPlc</Name>
-							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>mcGlobal.fbMotionModule[4].fbAxis[1].fbLocalNc.AxisRef.NcToPlc</Name>
-							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>mcGlobal.fbMotionModule[4].fbAxis[2].fbLocalNc.AxisRef.NcToPlc</Name>
-							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>mcGlobal.fbMotionModule[4].fbAxis[3].fbLocalNc.AxisRef.NcToPlc</Name>
-							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>mcGlobal.fbMotionModule[4].fbAxis[4].fbLocalNc.AxisRef.NcToPlc</Name>
-							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>mcGlobal.fbMotionModule[4].fbAxis[5].fbLocalNc.AxisRef.NcToPlc</Name>
-							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>mcGlobal.fbMotionModule[4].fbAxis[6].fbLocalNc.AxisRef.NcToPlc</Name>
-							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>mcGlobal.fbMotionModule[4].fbAxis[7].fbLocalNc.AxisRef.NcToPlc</Name>
-							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>mcGlobal.fbMotionModule[4].fbAxis[8].fbLocalNc.AxisRef.NcToPlc</Name>
+							<Name>Main1ms.mcModules[4].Axis[8].fbLocalNc.AxisRef.NcToPlc</Name>
 							<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
-						<Name>PlcTask Outputs</Name>
+						<Name>Task1ms Outputs</Name>
 						<Var>
-							<Name>MCgvl.fbAxis[1].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[1].Axis[1].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>MCgvl.fbAxis[2].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[1].Axis[2].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>MCgvl.fbAxis[3].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[1].Axis[3].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>MCgvl.fbAxis[4].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[1].Axis[4].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>MCgvl.fbAxis[5].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[1].Axis[5].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>MCgvl.fbAxis[6].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[1].Axis[6].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>MCgvl.fbAxis[7].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[1].Axis[7].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>MCgvl.fbAxis[8].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[1].Axis[8].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[1].fbAxis[1].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[2].Axis[1].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[1].fbAxis[2].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[2].Axis[2].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[1].fbAxis[3].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[2].Axis[3].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[1].fbAxis[4].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[2].Axis[4].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[1].fbAxis[5].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[2].Axis[5].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[1].fbAxis[6].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[2].Axis[6].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[1].fbAxis[7].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[2].Axis[7].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[1].fbAxis[8].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[2].Axis[8].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[2].fbAxis[1].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[3].Axis[1].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[2].fbAxis[2].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[3].Axis[2].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[2].fbAxis[3].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[3].Axis[3].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[2].fbAxis[4].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[3].Axis[4].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[2].fbAxis[5].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[3].Axis[5].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[2].fbAxis[6].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[3].Axis[6].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[2].fbAxis[7].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[3].Axis[7].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[2].fbAxis[8].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[3].Axis[8].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[3].fbAxis[1].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[4].Axis[1].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[3].fbAxis[2].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[4].Axis[2].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[3].fbAxis[3].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[4].Axis[3].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[3].fbAxis[4].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[4].Axis[4].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[3].fbAxis[5].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[4].Axis[5].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[3].fbAxis[6].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[4].Axis[6].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[3].fbAxis[7].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[4].Axis[7].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>mcGlobal.fbMotionModule[3].fbAxis[8].fbLocalNc.AxisRef.PlcToNc</Name>
-							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>mcGlobal.fbMotionModule[4].fbAxis[1].fbLocalNc.AxisRef.PlcToNc</Name>
-							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>mcGlobal.fbMotionModule[4].fbAxis[2].fbLocalNc.AxisRef.PlcToNc</Name>
-							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>mcGlobal.fbMotionModule[4].fbAxis[3].fbLocalNc.AxisRef.PlcToNc</Name>
-							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>mcGlobal.fbMotionModule[4].fbAxis[4].fbLocalNc.AxisRef.PlcToNc</Name>
-							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>mcGlobal.fbMotionModule[4].fbAxis[5].fbLocalNc.AxisRef.PlcToNc</Name>
-							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>mcGlobal.fbMotionModule[4].fbAxis[6].fbLocalNc.AxisRef.PlcToNc</Name>
-							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>mcGlobal.fbMotionModule[4].fbAxis[7].fbLocalNc.AxisRef.PlcToNc</Name>
-							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>mcGlobal.fbMotionModule[4].fbAxis[8].fbLocalNc.AxisRef.PlcToNc</Name>
+							<Name>Main1ms.mcModules[4].Axis[8].fbLocalNc.AxisRef.PlcToNc</Name>
 							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 					</Vars>
 					<Contexts>
 						<Context>
 							<Id NeedCalleeCall="true">0</Id>
-							<Name>PlcTask</Name>
+							<Name>Task1ms</Name>
 							<ManualConfig>
-								<OTCID>#x02010030</OTCID>
+								<OTCID>#x02010060</OTCID>
 							</ManualConfig>
-							<Priority>20</Priority>
-							<CycleTime>10000000</CycleTime>
+							<Priority>1</Priority>
+							<CycleTime>1000000</CycleTime>
 						</Context>
 					</Contexts>
 					<TaskPouOids>
-						<TaskPouOid Prio="20" OTCID="#x08502001"/>
+						<TaskPouOid Prio="1" OTCID="#x08502001"/>
 					</TaskPouOids>
 				</Instance>
 			</Project>
@@ -2997,39 +2933,39 @@ External Setpoint Generation:
 		<Io/>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{05000010-2001-0850-1000-040300205008}" Id="#x02030010" Watchdog="04000000040000000400000004000000"/>
+		<MappingInfo Identifier="{08502001-0010-0500-0020-500810000403}" Id="#x02030010" Watchdog="04000000040000000400000004000000"/>
 		<OwnerA Name="TIPC^SynergyPLC^SynergyPLC Instance">
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis 1">
-				<Link VarA="PlcTask Inputs^MCgvl.fbAxis[1].fbLocalNc.AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^MCgvl.fbAxis[1].fbLocalNc.AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="Task1ms Inputs^Main1ms.mcModules[1].Axis[1].fbLocalNc.AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="Task1ms Outputs^Main1ms.mcModules[1].Axis[1].fbLocalNc.AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis 2">
-				<Link VarA="PlcTask Inputs^MCgvl.fbAxis[2].fbLocalNc.AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^MCgvl.fbAxis[2].fbLocalNc.AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="Task1ms Inputs^Main1ms.mcModules[1].Axis[2].fbLocalNc.AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="Task1ms Outputs^Main1ms.mcModules[1].Axis[2].fbLocalNc.AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis 3">
-				<Link VarA="PlcTask Inputs^MCgvl.fbAxis[3].fbLocalNc.AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^MCgvl.fbAxis[3].fbLocalNc.AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="Task1ms Inputs^Main1ms.mcModules[1].Axis[3].fbLocalNc.AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="Task1ms Outputs^Main1ms.mcModules[1].Axis[3].fbLocalNc.AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis 4">
-				<Link VarA="PlcTask Inputs^MCgvl.fbAxis[4].fbLocalNc.AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^MCgvl.fbAxis[4].fbLocalNc.AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="Task1ms Inputs^Main1ms.mcModules[1].Axis[4].fbLocalNc.AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="Task1ms Outputs^Main1ms.mcModules[1].Axis[4].fbLocalNc.AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis 5">
-				<Link VarA="PlcTask Inputs^MCgvl.fbAxis[5].fbLocalNc.AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^MCgvl.fbAxis[5].fbLocalNc.AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="Task1ms Inputs^Main1ms.mcModules[1].Axis[5].fbLocalNc.AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="Task1ms Outputs^Main1ms.mcModules[1].Axis[5].fbLocalNc.AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis 6">
-				<Link VarA="PlcTask Inputs^MCgvl.fbAxis[6].fbLocalNc.AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^MCgvl.fbAxis[6].fbLocalNc.AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="Task1ms Inputs^Main1ms.mcModules[1].Axis[6].fbLocalNc.AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="Task1ms Outputs^Main1ms.mcModules[1].Axis[6].fbLocalNc.AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis 7">
-				<Link VarA="PlcTask Inputs^MCgvl.fbAxis[7].fbLocalNc.AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^MCgvl.fbAxis[7].fbLocalNc.AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="Task1ms Inputs^Main1ms.mcModules[1].Axis[7].fbLocalNc.AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="Task1ms Outputs^Main1ms.mcModules[1].Axis[7].fbLocalNc.AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis 8">
-				<Link VarA="PlcTask Inputs^MCgvl.fbAxis[8].fbLocalNc.AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^MCgvl.fbAxis[8].fbLocalNc.AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="Task1ms Inputs^Main1ms.mcModules[1].Axis[8].fbLocalNc.AxisRef.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="Task1ms Outputs^Main1ms.mcModules[1].Axis[8].fbLocalNc.AxisRef.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>
