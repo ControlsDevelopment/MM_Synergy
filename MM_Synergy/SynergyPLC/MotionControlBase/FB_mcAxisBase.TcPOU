@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="FB_mcAxisBase" Id="{9893d30c-592c-4fbd-8920-f1297d3ded8c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_mcAxisBase EXTENDS FB_AxisNcBase
+VAR_INPUT
+	bPowerEnable : BOOL; // Enable Power
+	bJogPositive : BOOL; // Jog Positive
+	bJogNegative : BOOL; // Jog Negative
+	bStop: BOOL; // Stop axis
+	bReset: BOOL; // Reset axis
+	bExecuteOpLimits: BOOL; // Write operation limits
+END_VAR
+VAR_OUTPUT
+	bBaseFBError : BOOL; // Internal library error
+	stStatus: ST_mcAxisStatus; // Status booleans of Axis
+	stDataNC: ST_mcAxisNC; // Real data from drive
+END_VAR
+VAR
+	stJogAllowance : ST_mcJogAllowance; // Status bits troubleshooting
+	rTrigOpLimits : R_TRIG; // Operation limits trigger
+END_VAR
+
+VAR_INPUT PERSISTENT
+	stJogParameters : ST_mcJogParameters; // Accel, Decel, Velocity etc
+	stOperationLimits : ST_mcAxisOperationLimits; // Soft pos limits, vel limits
+END_VAR
+
+VAR CONSTANT 
+	cJogMinParameter : REAL := 0.0;  // Minimum parameters for jog to be set to 0 
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[A_Cyclic(); // Cyclic calls of routines
+
+
+]]></ST>
+    </Implementation>
+    <Action Name="A_Cyclic" Id="{04996d7b-4f4a-4004-8cf1-45fed74b8b4e}">
+      <Implementation>
+        <ST><![CDATA[SUPER^.Cyclic();						//Cyclic method to initialize underlying motion blocks
+
+IF M_FbError() THEN
+;  // Error Exists in Base FB
+ELSE  
+
+	// Calling of method to turn power on/off
+	M_Power(bCommand:= bPowerEnable);  		
+	
+	//Calling of method to jog + or - 
+	M_Jog(bCommandJogP:= bJogPositive,bCommandJogM:= bJogNegative);
+
+END_IF;
+
+// Calling of method to stop axis
+M_Stop(bCommand:= bStop); 
+
+// Calling of method to reset axis
+M_Reset(bCommand:= bReset); 
+
+// Calling of method to write operation limits of an axis
+rTrigOpLimits(CLK:= bExecuteOpLimits);
+M_OperationLimits(bCommand:= rTrigOpLimits.Q);
+
+// Axis Status bits
+A_Status();
+
+//Axis Real Data
+A_DataNC();
+]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="A_DataNC" Id="{375700f0-383f-498b-925f-e333c3027158}">
+      <Implementation>
+        <ST><![CDATA[(*
+Data from drive
+*)
+
+THIS^.stDataNC.lrActPosition:= SUPER^.ActualsNc.Position;
+THIS^.stDataNC.lrActVelocity:= SUPER^.ActualsNc.Velocity;
+THIS^.stDataNC.lrActTorque:= SUPER^.ActualsNc.Torque;
+//TODO: THIS^.stDataNC.lrMotorTemp:= ;
+]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="A_Status" Id="{25e36e2d-b813-407e-8d83-2638cab166ab}">
+      <Implementation>
+        <ST><![CDATA[(*
+Status bits for axis
+*)
+
+THIS^.stStatus.bPowerEnabled:= THIS^.Power.Status;
+THIS^.stStatus.bStandStill:= SUPER^.fbLocalNc.AxisRef.Status.StandStill;
+THIS^.stStatus.bMoving:= SUPER^.fbLocalNc.AxisRef.Status.Moving;
+THIS^.stStatus.bHomed:= SUPER^.fbLocalNc.AxisRef.Status.Homed;
+THIS^.stStatus.bError:= SUPER^.fbLocalNc.AxisRef.Status.Error;]]></ST>
+      </Implementation>
+    </Action>
+    <Method Name="M_FbError" Id="{a3bbd40f-558d-4007-8e69-605d725218a9}">
+      <Declaration><![CDATA[METHOD M_FbError : BOOL
+VAR_INPUT
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF bError THEN
+	bBaseFBError := TRUE;			//Set bErrorChk to TRUE so none of the other methods are called
+	M_FbError :=TRUE;
+ELSE
+	bBaseFBError := FALSE;
+	M_FbError :=FALSE;
+END_IF
+		
+	
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Jog" Id="{ac6deda1-bf3c-4ebb-acd5-3c584141f03a}">
+      <Declaration><![CDATA[METHOD M_Jog : HRESULT
+VAR_INPUT
+	bCommandJogP 	:   BOOL;
+	bCommandJogM	:	BOOL;
+END_VAR
+
+VAR 
+	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// ======================================================================
+IF bCommandJogP OR bCommandJogM THEN
+
+	IF M_JogPreChecks() THEN // Calls to check pre conditions to allow jogging
+		F_SucceededHr(Jog.SetParameter(fAcceleration:=stJogParameters.lrJogAcceleration, fDeceleration:=stJogParameters.lrJogDeceleration,
+		fJerk:=stJogParameters.lrJogJerkValue,fVelocity:=stJogParameters.lrJogVelocity), M_Jog);
+
+					IF bCommandJogP THEN
+					 F_SucceededHr(Jog.DoJogP(bExecute:=TRUE),M_Jog);	
+					ELSIF bCommandJogM THEN
+			 		 F_SucceededHr(Jog.DoJogM(bExecute:=TRUE),M_Jog);
+					ELSE
+					F_SucceededHr(Jog.DoJogP(bExecute:=FALSE),M_Jog); // Stop the jog when + or - button is released
+					F_SucceededHr(Jog.DoJogM(bExecute:=FALSE),M_Jog); 
+					END_IF
+	ELSE
+		F_SucceededHr(Jog.DoJogP(bExecute:=FALSE),M_Jog); // Stop the jog if pre conditions are not met even during motion 
+		F_SucceededHr(Jog.DoJogM(bExecute:=FALSE),M_Jog);
+	END_IF
+ELSE
+			F_SucceededHr(Jog.DoJogP(bExecute:=FALSE),M_Jog); // Stop the jog when its not + or - button  
+			F_SucceededHr(Jog.DoJogM(bExecute:=FALSE),M_Jog);
+END_IF		
+	
+// ======================================================================
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_JogPreChecks" Id="{a15c8866-2f98-4ced-b6f6-199983ca239f}">
+      <Declaration><![CDATA[METHOD M_JogPreChecks : BOOL
+VAR_INPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF MCgvl.OperationMode.eModeActive = E_mcOperationMode.Manual THEN
+	stJogAllowance.bAllowJogOperationMode:=TRUE;
+//	fbMsgJogOperationMode.Release();
+	ELSE
+//	fbMsgJogOperationMode.SendMessage(TC_Events.TC_EventJog.OperationMode,'Change Operation Mode');
+    stJogAllowance.bAllowJogOperationMode:=FALSE;	
+END_IF
+
+IF stJogParameters.lrJogAcceleration > cJogMinParameter AND stJogParameters.lrJogDeceleration > cJogMinParameter AND stJogParameters.lrJogVelocity > cJogMinParameter THEN 
+	stJogAllowance.bAllowJogParameters:=TRUE;
+//	fbMsgJogParamters.Release();
+	ELSE
+//	fbMsgJogParamters.SendMessage(TC_Events.TC_EventJog.Parameters,'Check Acceleration, Decceleration and Velocity');
+    stJogAllowance.bAllowJogParameters:=FALSE;	
+END_IF
+
+M_JogPreChecks:= stJogAllowance.bAllowJogOperationMode AND stJogAllowance.bAllowJogParameters;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_OperationLimits" Id="{c7e8b8ec-a466-4c2c-8725-bcd964197228}">
+      <Declaration><![CDATA[METHOD M_OperationLimits : BOOL
+VAR_INPUT
+	bCommand		:		BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF bCommand THEN
+	THIS^.MotionParams.SoftEndMax :=stOperationLimits.lrSoftMaxPosition;
+	THIS^.MotionParams.SoftEndMin :=stOperationLimits.lrSoftMinPosition;
+	THIS^.MotionParams.MaxAcceleration:=stOperationLimits.lrDefaultAcceleration;
+	THIS^.MotionParams.MaxDeceleration:=stOperationLimits.lrDefaultDeceleration;
+	THIS^.MotionParams.MaxVeloApplication:=stOperationLimits.lrMaxVelocity;
+	bExecuteOpLimits:= FALSE; 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Power" Id="{e746b7da-cb6b-4d35-af69-904a1282bb02}">
+      <Declaration><![CDATA[METHOD M_Power : HRESULT
+VAR_INPUT
+	bCommand : BOOL;
+END_VAR
+
+VAR
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// ======================================================================
+
+	IF bCommand THEN
+		IF F_SucceededHr(Power.FeedEnable(bFeedEnaPositive:=TRUE,bFeedEnaNegative:=TRUE), M_Power) THEN
+			F_SucceededHr(Power.DoPower(bEnable:=TRUE), M_Power);
+		END_IF
+
+	
+	ELSIF NOT bCommand THEN
+		IF F_SucceededHr(Power.FeedEnable(bFeedEnaPositive:=FALSE,bFeedEnaNegative:=FALSE), M_Power) THEN
+			F_SucceededHr(Power.DoPower(bEnable:=FALSE), M_Power);
+		END_IF
+	
+	ELSE 
+		; // cyclic calls of this method 
+	END_IF		
+// ======================================================================]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Reset" Id="{51d6a2a6-9807-4536-9654-46595267b114}">
+      <Declaration><![CDATA[METHOD M_Reset : HRESULT
+VAR_INPUT
+	bCommand : BOOL;
+END_VAR
+
+VAR
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// ======================================================================
+
+	IF bCommand THEN
+		IF F_SucceededHr(Reset.DoReset(bExecute:=TRUE), M_Reset) THEN
+			bError:=FALSE;
+		END_IF
+	
+	ELSIF NOT bCommand THEN		
+		F_SucceededHr(Reset.DoReset(bExecute:=FALSE), M_Reset);
+		
+	ELSE 
+		; // cyclic calls of this method 
+	END_IF
+		
+// ======================================================================]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Stop" Id="{18420e58-9aed-46cf-a9f7-42ea533154a2}">
+      <Declaration><![CDATA[METHOD M_Stop : HRESULT
+VAR_INPUT
+	bCommand : BOOL;
+END_VAR
+
+VAR
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// ======================================================================
+
+	IF bCommand THEN
+//		bMovePtpAxis := FALSE;
+		F_SucceededHr(Stop.DoStop(bExecute:=TRUE), M_Stop);
+	
+	ELSIF NOT bCommand THEN
+		F_SucceededHr(Stop.DoStop(bExecute:=FALSE), M_Stop);
+		
+	ELSE 
+		; // cyclic calls of this method 
+	END_IF
+		
+// ======================================================================]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_mcAxisBase">
+      <LineId Id="142" Count="0" />
+      <LineId Id="169" Count="1" />
+      <LineId Id="172" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_mcAxisBase.A_Cyclic">
+      <LineId Id="36" Count="21" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="63" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_mcAxisBase.A_DataNC">
+      <LineId Id="2" Count="4" />
+      <LineId Id="10" Count="2" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_mcAxisBase.A_Status">
+      <LineId Id="3" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="4" Count="1" />
+      <LineId Id="1" Count="1" />
+      <LineId Id="6" Count="2" />
+    </LineIds>
+    <LineIds Name="FB_mcAxisBase.M_FbError">
+      <LineId Id="11" Count="1" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="21" Count="1" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_mcAxisBase.M_Jog">
+      <LineId Id="251" Count="24" />
+      <LineId Id="198" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_mcAxisBase.M_JogPreChecks">
+      <LineId Id="174" Count="8" />
+      <LineId Id="184" Count="6" />
+      <LineId Id="119" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_mcAxisBase.M_OperationLimits">
+      <LineId Id="5" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="16" Count="3" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="15" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_mcAxisBase.M_Power">
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="33" Count="1" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="38" Count="1" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="41" Count="1" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_mcAxisBase.M_Reset">
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="33" Count="1" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="41" Count="1" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_mcAxisBase.M_Stop">
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="59" Count="1" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="41" Count="1" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

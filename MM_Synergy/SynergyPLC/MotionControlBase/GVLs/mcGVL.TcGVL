@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <GVL Name="mcGVL" Id="{1bb2c2c3-05d0-42d1-bcb4-3ae8539d82c0}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	OperationMode : FB_MCOperationMode; // Operation mode 
+	AxesConfigurator : FB_mcAxesConfigurator; // Configurator to set number of axes
+	ModulesConfigurator : FB_mcModulesConfigurator; // Configurator to set number of modules
+END_VAR
+
+VAR_GLOBAL CONSTANT
+	cMaxAxesCapacity: UINT := 8; // Maximum designed axes capacity by hardware
+	cMinAxesCapacity: UINT := 1; // Minimum designed axes capacity by hardware
+	cMaxModuleCapacity	: UINT := 4; // Maximum designed modules capacity by hardware
+	cMinModuleCapacity	: UINT := 1; // Minimum designed modules capacity by hardware
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

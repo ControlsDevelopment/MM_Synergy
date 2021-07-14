@@ -3,7 +3,7 @@
   <GVL Name="mcGlobal" Id="{a95cc114-dbbb-480d-aff4-24ee682a6b03}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
-	fbMotionModule	:		ARRAY[1..cMaxNoOfModule] OF ModuleBase;
+//	fbMotionModule	:		ARRAY[1..cMaxNoOfModule] OF ModuleBase;
 END_VAR
 
 VAR_GLOBAL CONSTANT

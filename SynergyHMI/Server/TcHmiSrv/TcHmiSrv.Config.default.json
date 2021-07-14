@@ -2770,11 +2770,11 @@
     "USERSELECTTYPE": 0,
     "VIDEOSEGMENTSIZE": 1048576,
     "VIRTUALDIRECTORIES": {
-        "/": "C:\\Users\\ajhaveri\\Documents\\TcXaeShell\\MM_Synergy\\SynergyHMI",
-        "/Beckhoff.TwinCAT.HMI.Controls": "C:\\Users\\ajhaveri\\Documents\\TcXaeShell\\MM_Synergy\\Packages\\Beckhoff.TwinCAT.HMI.Controls.12.746.3\\runtimes\\native1.12-tchmi",
-        "/Beckhoff.TwinCAT.HMI.Functions": "C:\\Users\\ajhaveri\\Documents\\TcXaeShell\\MM_Synergy\\Packages\\Beckhoff.TwinCAT.HMI.Functions.12.746.3\\runtimes\\native1.12-tchmi",
-        "/bin": "C:\\Users\\ajhaveri\\Documents\\TcXaeShell\\MM_Synergy\\SynergyHMI\\bin\\",
-        "/bin/framework": "C:\\Users\\ajhaveri\\Documents\\TcXaeShell\\MM_Synergy\\SynergyHMI\\bin\\framework",
-        "/framework": "C:\\Users\\ajhaveri\\Documents\\TcXaeShell\\MM_Synergy\\Packages\\Beckhoff.TwinCAT.HMI.Framework.12.746.3\\runtimes\\native1.12-tchmi"
+        "/": "C:\\Users\\ulhaqjaw\\Documents\\TcXaeShell\\MM_Synergy\\SynergyHMI",
+        "/Beckhoff.TwinCAT.HMI.Controls": "C:\\Users\\ulhaqjaw\\Documents\\TcXaeShell\\MM_Synergy\\Packages\\Beckhoff.TwinCAT.HMI.Controls.12.746.3\\runtimes\\native1.12-tchmi",
+        "/Beckhoff.TwinCAT.HMI.Functions": "C:\\Users\\ulhaqjaw\\Documents\\TcXaeShell\\MM_Synergy\\Packages\\Beckhoff.TwinCAT.HMI.Functions.12.746.3\\runtimes\\native1.12-tchmi",
+        "/bin": "C:\\Users\\ulhaqjaw\\Documents\\TcXaeShell\\MM_Synergy\\SynergyHMI\\bin\\",
+        "/bin/framework": "C:\\Users\\ulhaqjaw\\Documents\\TcXaeShell\\MM_Synergy\\SynergyHMI\\bin\\framework",
+        "/framework": "C:\\Users\\ulhaqjaw\\Documents\\TcXaeShell\\MM_Synergy\\Packages\\Beckhoff.TwinCAT.HMI.Framework.12.746.3\\runtimes\\native1.12-tchmi"
     }
 }

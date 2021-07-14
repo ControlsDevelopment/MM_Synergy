@@ -21,63 +21,110 @@
     <Compile Include="GlobalBase\WatchdogTimer.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MotionControlBase\AxisBase.TcPOU">
+    <Compile Include="MotionControlBaseAnkur\AxisBase.TcPOU">
+      <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+      <External>true</External>
+    </Compile>
+    <Compile Include="MotionControlBaseAnkur\DUTs\Application.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MotionControlBase\DUTs\Application.TcDUT">
+    <Compile Include="MotionControlBaseAnkur\DUTs\AxisData.TcDUT">
+      <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+      <External>true</External>
+    </Compile>
+    <Compile Include="MotionControlBaseAnkur\DUTs\AxisProperties.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MotionControlBase\DUTs\AxisData.TcDUT">
+    <Compile Include="MotionControlBaseAnkur\DUTs\AxisStatus.TcDUT">
+      <SubType>Code</SubType>
+      <External>true</External>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </Compile>
+    <Compile Include="MotionControlBaseAnkur\DUTs\GearingType.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MotionControlBase\DUTs\AxisProperties.TcDUT">
+    <Compile Include="MotionControlBaseAnkur\DUTs\Hardware.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MotionControlBase\DUTs\AxisStatus.TcDUT">
+    <Compile Include="MotionControlBaseAnkur\DUTs\HomeFlagType.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MotionControlBase\DUTs\GearingType.TcDUT">
+    <Compile Include="MotionControlBaseAnkur\DUTs\Homing.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MotionControlBase\DUTs\Hardware.TcDUT">
+    <Compile Include="MotionControlBaseAnkur\DUTs\HomingMode.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MotionControlBase\DUTs\HomeFlagType.TcDUT">
+    <Compile Include="MotionControlBaseAnkur\DUTs\ID.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MotionControlBase\DUTs\Homing.TcDUT">
+    <Compile Include="MotionControlBaseAnkur\DUTs\ManualSettings.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MotionControlBase\DUTs\HomingMode.TcDUT">
+    <Compile Include="MotionControlBaseAnkur\DUTs\Mechanical.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MotionControlBase\DUTs\ID.TcDUT">
+    <Compile Include="MotionControlBaseAnkur\DUTs\OperationLimits.TcDUT">
+      <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+      <External>true</External>
+    </Compile>
+    <Compile Include="MotionControlBaseAnkur\DUTs\OperationMode.TcDUT">
+      <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+      <External>true</External>
+    </Compile>
+    <Compile Include="MotionControlBaseAnkur\DUTs\StageBase.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MotionControlBase\DUTs\ManualSettings.TcDUT">
+    <Compile Include="MotionControlBaseAnkur\DUTs\StepBase.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MotionControlBase\DUTs\Mechanical.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MotionControlBase\DUTs\OperationLimits.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MotionControlBase\DUTs\OperationMode.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MotionControlBase\DUTs\StageBase.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MotionControlBase\DUTs\StepBase.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MotionControlBase\GVLs\mcGlobal.TcGVL">
+    <Compile Include="MotionControlBaseAnkur\GVLs\mcGlobal.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
-    <Compile Include="MotionControlBase\ModuleBase.TcPOU">
+    <Compile Include="MotionControlBaseAnkur\ModuleBase.TcPOU">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\DUTs\ST_mcAxisNC.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\DUTs\E_mcOperationMode.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\DUTs\ST_mcAxisStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\DUTs\ST_mcJogAllowance.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\DUTs\ST_mcJogParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\DUTs\ST_mcAxisOperationLimits.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\FB_mcModulesConfigurator.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\FB_mcAxisBase.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\FB_mcAxesConfigurator.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\FB_mcModuleBase.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\FB_mcOperationMode.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MotionControlBase\GVLs\mcGVL.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="Synergy\GVLs\synGlobal.TcGVL">
       <SubType>Code</SubType>
@@ -96,10 +143,13 @@
     <Folder Include="GlobalBase\DUTs" />
     <Folder Include="GlobalBase\GVLs" />
     <Folder Include="MotionControlBase" />
-    <Folder Include="MotionControlBase\DUTs" />
-    <Folder Include="MotionControlBase\GVLs" />
+    <Folder Include="MotionControlBaseAnkur" />
+    <Folder Include="MotionControlBaseAnkur\DUTs" />
+    <Folder Include="MotionControlBaseAnkur\GVLs" />
     <Folder Include="GlobalBase" />
     <Folder Include="EMultiBase" />
+    <Folder Include="MotionControlBase\DUTs" />
+    <Folder Include="MotionControlBase\GVLs" />
     <Folder Include="Synergy" />
     <Folder Include="Synergy\Common" />
     <Folder Include="Synergy\DUTs" />
@@ -107,6 +157,10 @@
     <Folder Include="Synergy\MAIN" />
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderReference Include="Tc2_EtherCAT">
+      <DefaultResolution>Tc2_EtherCAT, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_EtherCAT</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_Standard</Namespace>

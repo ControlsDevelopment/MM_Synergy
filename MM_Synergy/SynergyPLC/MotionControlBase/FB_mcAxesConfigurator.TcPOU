@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="FB_mcAxesConfigurator" Id="{d409f0e4-49e2-4ba1-854f-e8f860bb8e07}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_mcAxesConfigurator
+VAR_INPUT
+	bExecute : BOOL; // Boolean to execute the function block
+	uiNoAxesRequired : UINT:= 1; // Get from user no of axes he wants to use
+	sNetId: T_AmsNetId;
+	pArrEcScannedSlaveInfo: POINTER TO ARRAY [0..EC_MAX_SLAVES] OF ST_EcSlaveScannedData;
+	cbBufLen: UDINT;
+	tTimeout: TIME;
+END_VAR
+VAR_OUTPUT
+	uiNoAxesActive : UINT; // current no of active axes
+	bNoOfAxesMatched : BOOL; // Entered no of axes matched with ECAT ring axes available
+END_VAR
+
+VAR
+	uiECATScannedAxes: UINT; // Scan the ECAT ring to find the no of axis available
+	fbScannedAxes	: FB_ECGETSCANNEDSLAVES;
+	rTrigExecute	: R_TRIG;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*Axis configurator is designed to get number of axis from user and scan ECAT 
+TODO: Add further elements to it
+*)
+
+rTrigExecute(CLK:= bExecute);
+M_NoOfAxes(bCommand:= rTrigExecute.Q);]]></ST>
+    </Implementation>
+    <Method Name="M_NoOfAxes" Id="{36074e18-e0b1-401a-9220-97a07c8832b3}">
+      <Declaration><![CDATA[METHOD M_NoOfAxes : BOOL
+VAR_INPUT
+	bCommand : BOOL; 
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF bCommand THEN
+
+	fbScannedAxes(
+		bExecute:= TRUE, 
+		sNetId:= sNetId, 
+		pArrEcScannedSlaveInfo:= pArrEcScannedSlaveInfo, 
+		cbBufLen:= cbBufLen, 
+		tTimeout:= tTimeout ,  
+		nSlaves=> uiECATScannedAxes);
+
+	IF (uiNoAxesRequired <> uiNoAxesActive) OR (uiNoAxesRequired <> uiECATScannedAxes) THEN
+		
+		IF (uiNoAxesRequired < mcGvl.cMinAxesCapacity) OR (uiNoAxesRequired > mcGvl.cMaxAxesCapacity) THEN
+			; //TODO: Entered no of axes are not possible set the message to user
+	//	ELSIF (uiNoAxesRequired <> uiECATScannedAxes) THEN
+	//		bNoOfAxesMatched:=FALSE; // Entered no of axes are not matching the ECAT ring axes available
+		ELSE
+			uiNoAxesActive:= uiNoAxesRequired; // Set the required number of axes to active no of axes
+			bNoOfAxesMatched:= TRUE;	
+		END_IF
+	
+	ELSE
+		; // cyclic calls for inequality
+	END_IF
+	// Reset the input of Function block so next time it has to look for only rising edge
+	bExecute:= FALSE; 
+ELSE
+	fbScannedAxes(bExecute:= FALSE); // cyclic calls for bCommand
+END_IF
+
+M_NoOfAxes:= bNoOfAxesMatched;
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_mcAxesConfigurator">
+      <LineId Id="121" Count="0" />
+      <LineId Id="146" Count="0" />
+      <LineId Id="123" Count="0" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="120" Count="0" />
+      <LineId Id="28" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_mcAxesConfigurator.M_NoOfAxes">
+      <LineId Id="20" Count="0" />
+      <LineId Id="31" Count="6" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="6" Count="12" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="39" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

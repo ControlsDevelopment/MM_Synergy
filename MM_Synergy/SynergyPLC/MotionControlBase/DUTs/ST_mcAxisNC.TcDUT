@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <DUT Name="ST_mcAxisNC" Id="{d82da8bd-d902-4711-9062-8c2fe10cabf8}">
+    <Declaration><![CDATA[TYPE ST_mcAxisNC :
+STRUCT
+	lrActPosition			:		LREAL;
+	lrActVelocity			:		LREAL;
+	lrActTorque				:		LREAL;
+	lrMotorTemp				:		LREAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

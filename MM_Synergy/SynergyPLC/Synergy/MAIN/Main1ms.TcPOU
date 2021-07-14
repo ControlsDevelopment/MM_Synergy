@@ -3,23 +3,38 @@
   <POU Name="Main1ms" Id="{3580f847-e6d0-45a6-ba8f-b4c0385d5404}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Main1ms
 VAR
-	iCount			:		INT;
+	mcModules		: ARRAY [1..mcGvl.cMaxModuleCapacity] OF FB_mcModuleBase;
+	mcCount			: UINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[FOR iCount := 1 TO mcGlobal.cMaxNoOfModule DO
-	mcGlobal.fbMotionModule[iCount](intNoOfAxis := (*from HMI*));
-END_FOR;
+      <ST><![CDATA[A_mcCyclic();
 
 
 ]]></ST>
     </Implementation>
+    <Action Name="A_mcCyclic" Id="{4fd36bd2-0cdb-47c0-85db-8410bde7dda1}">
+      <Implementation>
+        <ST><![CDATA[mcGvl.OperationMode(); // Operation mode 
+mcGvl.AxesConfigurator(); // Configurator to set number of axes
+mcGvl.ModulesConfigurator(); // Configurator to set number of modules
+
+FOR mcCount := 1 TO mcGvl.ModulesConfigurator.uiNoModulesActive DO
+	mcModules[mcCount]();
+END_FOR;]]></ST>
+      </Implementation>
+    </Action>
     <LineIds Name="Main1ms">
-      <LineId Id="9" Count="0" />
-      <LineId Id="11" Count="1" />
+      <LineId Id="12" Count="0" />
       <LineId Id="5" Count="0" />
       <LineId Id="8" Count="0" />
       <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="Main1ms.A_mcCyclic">
+      <LineId Id="2" Count="1" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="5" Count="2" />
+      <LineId Id="4" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
